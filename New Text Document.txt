@@ -1,0 +1,6 @@
+http://www.disc.ua.es/~gil/FAT12Description.pdf
+https://students.cs.byu.edu/~cs345ta/labs/P6-FAT%20Supplement.html
+https://www.codeguru.com/cpp/cpp/cpp_mfc/files/article.php/c13907/Long-File-Name-LFN-Entries-in-the-FAT-Root-Directory-of-Floppy-Disks.htm
+http://www.maverick-os.dk/FileSystemFormats/FAT12_FileSystem.html
+https://www.erdogantan.com/trdos/retrodos/retrodos3/etc/FAT12_overview.pdf
+http://www.tavi.co.uk/phobos/fat.html
