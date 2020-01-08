@@ -58,15 +58,15 @@ uint32_t kmc_read_multi_sector(uint32_t index, uint32_t num, uint8_t *buff)
     
     return FAP12_NUMBER_BYTE_PER_SECTOR*num*_size_t;
 }
-void kmc_update_sector_size(uint32_t _sector_size)
+void kmc_update_sector_size(uint32_t sector_size)
 {
-    if(0 == _sector_size % FAP12_NUMBER_BYTE_PER_SECTOR)
+    if(0 == sector_size % FAP12_NUMBER_BYTE_PER_SECTOR)
     {
-        g_sector_per_cluster = _sector_size;
+        g_sector_per_cluster = sector_size;
     }
     else
     {
-        g_sector_per_cluster = _sector_size / FAP12_NUMBER_BYTE_PER_SECTOR;
+        g_sector_per_cluster = sector_size / FAP12_NUMBER_BYTE_PER_SECTOR;
     }
 }
 uint32_t kmc_read_entries_directories(uint32_t index, uint8_t *buff)
