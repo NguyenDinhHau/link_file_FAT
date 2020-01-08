@@ -22,8 +22,14 @@ int main()
 //    printf("%d\n",m);
     if(fat_init())
     {
-        m= fat12_read_next_fatIndex(13);
-        printf("%X",m);
+        if(fat12_read_bootsector())
+        {
+           // printf("dung");
+            head = fap12_read_entry_direct(0,head);
+            
+        }
+//        m= fat12_read_next_fatIndex(13);
+//        printf("%X",m);
 //       head = fap12_read_entry_direct(head);
 //       kmc_read_threebyte_fat(1259,&number[0]);
 //       a = reverseByte(number,3);
