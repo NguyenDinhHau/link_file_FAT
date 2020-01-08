@@ -5,6 +5,7 @@
 #include "HAL.h"
 #include "FAT12.h"
 
+
 int main()
 {
     fat12_read_bootsector_struct_t *bootsector =NULL;

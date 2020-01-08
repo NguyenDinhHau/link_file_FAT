@@ -9,7 +9,7 @@ typedef struct
     uint8_t bootstrapJump[3];		/* 0-2		Code to jump to bootstrap */
     uint8_t oem[8];					/* 3-10		OEM name/version */
 	uint8_t bytepersector[2];		/* 11-12	Byte per sector */
-    uint8_t sectorPerCluster;		/* 13		Sector per cluster */
+    uint8_t sectorPerCluster[1];		/* 13		Sector per cluster */
     uint8_t reservedSector[2];		/* 14-15	Number of reserved sectors */
 	uint8_t fatCopy[1];				/* 16		Number of FAT copies */
 	uint8_t numberrootEntry[2];			/* 17-18	Number of root directory entries */
@@ -29,6 +29,16 @@ typedef struct
     uint8_t bootstrap[448];			/* 62-509	Bootstrap code */
     uint8_t signature[2];			/* 510-511	Signature 0x55 0xaa */
 } fat12_read_bootsector_struct_t;
+
+typedef struct
+    {
+    uint32_t num_root_entry;
+    uint32_t byte_per_sector;
+    uint32_t sector_per_cluster;
+    uint32_t num_fat;
+    uint32_t sector_per_fat;
+} boot_sector_data_t;
+
 /* Create a struct to save elemement of Directories entry */
 typedef struct
 {
@@ -45,6 +55,20 @@ typedef struct
     uint8_t firstLogiClu[2];			
     uint8_t filesize[4];          
 } fat12_read_entryDirec_struct_t;
+
+typedef struct root {
+    char name[11];
+    uint32_t size;
+    uint32_t year;
+    uint32_t day;
+    uint32_t month;
+    uint32_t minute;
+    uint32_t hour;
+    uint32_t first_cluster;
+    uint8_t attribute;
+    uint32_t index;
+    
+} root_directory_data_t;
 
 typedef struct
 {
@@ -65,10 +89,9 @@ struct linked_list
 };
 typedef struct linked_list * linkedList_ptr;
 
-
-fat12_read_bootsector_struct_t* fat12_read_bootsector();
+bool fat12_read_bootsector();
 uint32_t reverseByte(uint8_t* _byte,uint8_t _count);
-linkedList_ptr fap12_read_entry_direct(linkedList_ptr head);
+linkedList_ptr fap12_read_entry_direct(uint32_t);
 uint32_t fat12_read_next_fatIndex(uint32_t _index);
 
 #endif /* _HEADER_FILENAME_FAT */
