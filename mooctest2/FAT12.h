@@ -48,7 +48,7 @@ typedef struct
 typedef struct
 {
     uint8_t fileName[11];						
-	uint8_t atributes;		
+	uint8_t atributes[1];		
     uint8_t reservedOfWindow;	
     uint8_t createMillStamp;		
 	uint8_t creationTime[2];			
@@ -71,8 +71,7 @@ typedef struct
     uint32_t minute;
     uint32_t hour;
     uint32_t first_cluster;
-    uint8_t attribute;
-    uint32_t index;    
+    uint8_t attribute;   
 } entry_directory_data_t;
 
 typedef struct
