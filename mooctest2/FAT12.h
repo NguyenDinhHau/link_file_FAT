@@ -3,7 +3,9 @@
 
 #define SWAPE_2BYTE(x) (uint16_t) (x[1] >> 8) | x[0]
 #define SWAPE_4BYTE(x) (uint32_t) (x[3] >> 24) | (uint32_t) (x[2] >> 8) | (uint32_t) (x[1] << 8) | (uint32_t) (x[0] << 24)
-
+#define FAT12 0x3231
+#define FAT16 0x3631
+#define FAT32 0x3233
 /* Create a struct to save element of bootSector */
 typedef struct
 {
@@ -37,6 +39,7 @@ typedef struct
     {
     uint32_t num_root_entry;
     uint32_t byte_per_sector;
+    uint32_t reservedSector;
     uint32_t sector_per_cluster;
     uint32_t num_fat;
     uint32_t sector_per_fat;
@@ -88,7 +91,7 @@ typedef struct
 
 struct linked_list
 {
-    entry_directory_data_t *entry_direct;
+    entry_directory_data_t entry_direct;
     struct linked_list *next;
 };
 typedef struct linked_list * linkedList_ptr;
@@ -97,6 +100,7 @@ bool fat12_read_bootsector();
 float fat_numberByte_fat_entry(uint32_t _fat_name);
 uint32_t reverseByte(uint8_t* _byte,uint8_t _count);
 linkedList_ptr fap12_read_entry_direct(uint32_t _first_cluster,linkedList_ptr _head_ptr);
-uint32_t fat12_read_next_fatIndex(uint32_t _index);
+uint32_t fat12_findnext_cluster(uint32_t first_cluster,uint32_t fat_name);
+uint32_t fat12_read_file(uint32_t first_cluster);
 
 #endif /* _HEADER_FILENAME_FAT */
